@@ -7,6 +7,7 @@ import { withStyles } from "@material-ui/core/styles";
 import HomeIcon from "@material-ui/icons/Home";
 import InboxIcon from "@material-ui/icons/MoveToInbox";
 import React from "react";
+import { Link } from "react-router-dom";
 
 const styles = {
   list: {
@@ -19,8 +20,8 @@ const SideMenu = props => {
   const sideList = (
     <div className={classes.list}>
       <List>
-        {["Home", "About"].map((text, index) => (
-          <ListItem button key={text}>
+        {["Home"].map((text, index) => (
+          <ListItem component={Link} to="/" button key={text}>
             <ListItemIcon>
               {index % 2 === 0 ? <HomeIcon/> : <InboxIcon />}
             </ListItemIcon>
