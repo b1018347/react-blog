@@ -41,7 +41,7 @@ class Blog extends Component {
 
     return this.state.blog ? (
       <Grid container  direction="row" justify="center" >
-        <Grid item xs={12} lg={6}>
+        <Grid item xs={12} sm={12} lg={4}>
           <Card >
             <CardHeader
               avatar={<Avatar className={classes.avatar}>{process.env.REACT_APP_AUTHOR}</Avatar>}

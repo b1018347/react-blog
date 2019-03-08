@@ -39,6 +39,7 @@ const Header = props => {
         <AppBar className={classes.root}>
             <Toolbar>
                 <IconButton
+                    onClick={props.toggleMenu}
                     className={classes.menuButton}
                     color="inherit"
                     aria-label="Menu"
