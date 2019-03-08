@@ -50,7 +50,7 @@ const Header = props => {
                     color="inherit"
                     className={classes.grow}
                 >
-                    My Blog
+                    {process.env.REACT_APP_TITLE}
                 </Typography>
             </Toolbar>
         </AppBar>
