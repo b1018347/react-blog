@@ -9,15 +9,16 @@ import Typography from '@material-ui/core/Typography';
 import React from 'react';
 
 const styles = {
-  card: {
-    maxWidth: 345,
-  },
   media: {
-    height: 140,
+    height: 250,
   },
+  cardContent: {
+    height: 50,
+    overflow: 'hidden'
+  }
 };
 
-function Blog(props) {
+function BlogCard(props) {
   const { classes, blog } = props;
   return (
     <Card className={classes.card}>
@@ -27,13 +28,13 @@ function Blog(props) {
           image={blog.image}
           title={blog.title}
         />
-        <CardContent>
+        <CardContent className={classes.cardContent}>
           <Typography gutterBottom variant="h5" component="h2">
           {blog.title}
           </Typography>
-          <Typography component="p">
-          {blog.body.substring(0, 100)}...
-          </Typography>
+          {/* <Typography component="div">
+          <div dangerouslySetInnerHTML={{__html: blog.body}}></div>
+          </Typography> */}
         </CardContent>
       </CardActionArea>
       <CardActions>
@@ -46,4 +47,4 @@ function Blog(props) {
 }
 
 
-export default withStyles(styles)(Blog)
+export default withStyles(styles)(BlogCard)
