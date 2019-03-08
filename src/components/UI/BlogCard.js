@@ -1,7 +1,6 @@
 import Button from "@material-ui/core/Button";
 import Card from "@material-ui/core/Card";
 
-
 import CardActionArea from "@material-ui/core/CardActionArea";
 import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
@@ -35,9 +34,7 @@ function BlogCard(props) {
           <Typography gutterBottom variant="h5" component="h2">
             {blog.title}
           </Typography>
-          <Typography>
-          {new Date(blog.created).toDateString()}
-          </Typography>
+          <Typography>{new Date(blog.created).toDateString()}</Typography>
         </CardContent>
       </CardActionArea>
       <CardActions>

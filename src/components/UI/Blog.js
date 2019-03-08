@@ -33,7 +33,6 @@ class Blog extends Component {
       .on("value", snapshot => {
         const blogs = snapshot.val();
         const [key] = Object.keys(blogs);
-        console.log(blogs[key]);
         this.setState({ blog: blogs[key] });
       });
   }
@@ -41,9 +40,9 @@ class Blog extends Component {
     const { classes } = this.props;
 
     return this.state.blog ? (
-      <Grid container direction="column" justify="center" alignItems="center">
-        <Grid item xl={4}>
-          <Card>
+      <Grid container  direction="row" justify="center" >
+        <Grid item xs={12} lg={6}>
+          <Card >
             <CardHeader
               avatar={<Avatar className={classes.avatar}>{process.env.REACT_APP_AUTHOR}</Avatar>}
               title={this.state.blog.title}
@@ -54,7 +53,7 @@ class Blog extends Component {
               image={this.state.blog.image}
               title={this.state.blog.title}
             />
-            <CardContent className={classes.cardContent}>
+            <CardContent>
               <Typography component="div">
                 <div
                   dangerouslySetInnerHTML={{ __html: this.state.blog.body }}
