@@ -1,9 +1,11 @@
-import SwipeableDrawer from "@material-ui/core/SwipeableDrawer";
+import Divider from "@material-ui/core/Divider";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
-import { withStyles } from "@material-ui/core/styles";
+import { withStyles, withTheme } from "@material-ui/core/styles";
+import SwipeableDrawer from "@material-ui/core/SwipeableDrawer";
+import Switch from "@material-ui/core/Switch";
 import HomeIcon from "@material-ui/icons/Home";
 import InboxIcon from "@material-ui/icons/MoveToInbox";
 import React from "react";
@@ -16,34 +18,45 @@ const styles = {
 };
 
 const SideMenu = props => {
-  const { classes } = props;
+  const { classes, darkTheme } = props;
+  
   const sideList = (
     <div className={classes.list}>
       <List>
         {["Home"].map((text, index) => (
-          <ListItem component={Link} to="/" button key={text}>
+          <ListItem component={Link} to="/" button key={text}  onClick={props.toggleMenu}>
             <ListItemIcon>
-              {index % 2 === 0 ? <HomeIcon/> : <InboxIcon />}
+              {index % 2 === 0 ? <HomeIcon /> : <InboxIcon />}
             </ListItemIcon>
             <ListItemText primary={text} />
           </ListItem>
         ))}
       </List>
+      <Divider />
+      <List>
+        <ListItem>
+          <Switch
+            checked={darkTheme}
+            onChange={props.toggleTheme}
+            value="dark"
+            color="primary"
+          />
+          <ListItemText primary="Dark mode" />
+        </ListItem>
+      </List>
     </div>
   );
 
   return (
-    <SwipeableDrawer open={props.open} onOpen={props.toggleMenu} onClose={props.toggleMenu}>
-      <div
-        tabIndex={0}
-        role="button"
-        onClick={props.toggleMenu}
-        onKeyDown={props.toggleMenu}
-      >
+    <SwipeableDrawer
+      open={props.open}
+      onOpen={props.toggleMenu}
+      onClose={props.toggleMenu}
+    >
+
         {sideList}
-      </div>
     </SwipeableDrawer>
   );
 };
 
-export default withStyles(styles)(SideMenu);
+export default withStyles(styles)(withTheme()(SideMenu));

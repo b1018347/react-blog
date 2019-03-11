@@ -16,7 +16,7 @@ const styles = theme => ({
 const BlogList = (props) => {
     const { classes, blogs } = props;
     return (
-        <Grid container className={classes.root}>
+        <Grid container className={classes.root} >
         <Grid
           container
           spacing={16}
@@ -29,7 +29,8 @@ const BlogList = (props) => {
             );
           })}
         </Grid>
-      </Grid>
+        </Grid>
+
     );
 };
 
