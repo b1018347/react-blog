@@ -6,14 +6,15 @@ import { BrowserRouter, Route } from "react-router-dom";
 import Blog from "./components/UI/Blog";
 import SideMenu from "./components/UI/SideMenu";
 import { MuiThemeProvider } from "@material-ui/core/styles";
-import { LightTheme, DarkTheme, getTheme, setTheme} from 'themes'; 
+import { LightTheme, DarkTheme, getTheme, setTheme } from "themes";
 
 class App extends Component {
   state = {
     blogs: [],
     showMenu: false,
-    themes: {light: LightTheme, dark: DarkTheme},
-    darkTheme: getTheme() === 'dark'
+    themes: { light: LightTheme, dark: DarkTheme },
+    darkTheme: getTheme() === "dark",
+    order: "asc"
   };
 
   componentDidMount() {
@@ -29,19 +30,31 @@ class App extends Component {
   }
 
   handleToggleSideMenu = () => {
-    this.setState({showMenu: !this.state.showMenu});
+    this.setState({ showMenu: !this.state.showMenu });
   };
-  
+
   handleToggleTheme = () => {
     const darkTheme = this.state.darkTheme;
-    setTheme(darkTheme ? 'light' : 'dark');
+    setTheme(darkTheme ? "light" : "dark");
     this.setState({ darkTheme: !darkTheme });
-  }
+  };
+
+  handleToggleOrder = () => {
+    this.setState(prevState => ({
+      order: prevState.order === "asc" ? "desc" : "asc"
+    }));
+  };
 
   render() {
     return (
       <BrowserRouter>
-        <MuiThemeProvider theme={this.state.darkTheme ? this.state.themes.dark : this.state.themes.light}>
+        <MuiThemeProvider
+          theme={
+            this.state.darkTheme
+              ? this.state.themes.dark
+              : this.state.themes.light
+          }
+        >
           <div style={{ marginTop: 100 }}>
             <Header toggleMenu={this.handleToggleSideMenu} />
             <SideMenu
@@ -49,12 +62,16 @@ class App extends Component {
               toggleMenu={this.handleToggleSideMenu}
               darkTheme={this.state.darkTheme}
               toggleTheme={this.handleToggleTheme}
+              order={this.state.order}
+              toggleOrder={this.handleToggleOrder}
             />
             <Route path="/:blogId" component={Blog} />
             <Route
               exact
               path="/"
-              render={() => <BlogList blogs={this.state.blogs} />}
+              render={() => (
+                <BlogList blogs={this.state.blogs} order={this.state.order} />
+              )}
             />
           </div>
         </MuiThemeProvider>

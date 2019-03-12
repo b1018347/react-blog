@@ -18,7 +18,7 @@ const styles = {
 };
 
 const SideMenu = props => {
-  const { classes, darkTheme } = props;
+  const { classes, darkTheme, order } = props;
   
   const sideList = (
     <div className={classes.list}>
@@ -42,6 +42,15 @@ const SideMenu = props => {
             color="primary"
           />
           <ListItemText primary="Dark mode" />
+        </ListItem>
+        <ListItem>
+          <Switch
+            checked={order === 'asc'}
+            onChange={props.toggleOrder}
+            value="asc"
+            color="primary"
+          />
+          <ListItemText primary="Newest first" />
         </ListItem>
       </List>
     </div>

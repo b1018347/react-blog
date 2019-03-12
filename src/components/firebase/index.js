@@ -6,7 +6,6 @@ class Firebase {
     constructor() {
       app.initializeApp(config);
       this.db = app.database();
-
     }
 
     blogs = () => this.db.ref(`blogs`);
